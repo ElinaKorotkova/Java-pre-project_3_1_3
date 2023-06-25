@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mvc user</title>
+</head>
+<body>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+
+        <tr th:action="@{/user}" th:object="${oneUser}" th:method="get">
+            <td th:text="${oneUser.getId()}">Id</td>
+            <td th:text="${oneUser.getUsername()}">Name</td>
+            <td th:text="${oneUser.getEmail()}">Email</td>
+            <td th:text="${oneUser.getRoles()}">Role</td>
+        </tr>
+
+    </table>
+    <form th:action="@{/logout}">
+        <button type="submit">Exit</button>
+    </form>
+</div>
+</body>
+</html>

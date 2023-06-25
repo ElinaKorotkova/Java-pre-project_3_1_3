@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+<h2>All Users</h2>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+
+        <tr th:each="user : ${allUsers}">
+            <td th:text="${user.getId()}">Id</td>
+            <td th:text="${user.getUsername()}">Name</td>
+            <td th:text="${user.getEmail()}">Email</td>
+            <td th:text="${user.getRoles()}">Role</td>
+
+            <td>
+                <form th:action="@{admin/edit/{id}(id=${user.getId()})}" th:object="${user}">
+                    <button type="submit">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{admin/delete/{id}(id=${user.id})}" th:object="${user}" th:method="DELETE">
+                    <input type="hidden" name="id" th:value="${user.getId()}">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <form th:action="@{admin/add}">
+        <button type="submit">Add new user</button>
+    </form>
+    <form th:action="@{/logout}">
+        <button type="submit">Exit</button>
+    </form>
+    <!--  </security:authorize>-->
+</div>
+</body>
+</html>
